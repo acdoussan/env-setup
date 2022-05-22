@@ -14,7 +14,7 @@
       include_vars: personal.config.yml
       when: inventory_hostname in groups['personal']
 
-    - name: Include personal vars.
+    - name: Include work vars.
       include_vars: work.config.yml
       when: inventory_hostname in groups['work']
 
