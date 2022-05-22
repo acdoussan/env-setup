@@ -1,20 +1,7 @@
 ---
 - hosts: all
-
   vars_files:
     - default.config.yml
-
-- hosts: work
-
-  vars_files:
-    - work.config.yml
-
-- hosts: personal
-
-  vars_files:
-    - personal.config.yml
-
-- hosts: all
 
   pre_tasks:
     - name: Include playbook configuration.
@@ -22,6 +9,14 @@
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
+
+    - name: Include personal vars.
+      include_vars: personal.config.yml
+      when: inventory_hostname in groups['personal']
+
+    - name: Include personal vars.
+      include_vars: work.config.yml
+      when: inventory_hostname in groups['work']
 
   roles:
     - role: elliotweiser.osx-command-line-tools
