@@ -1,4 +1,22 @@
 ---
+# oh-my-zsh https://github.com/robbyrussell/oh-my-zsh
+- name: install oh my zsh.
+  command: sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+  args:
+    creates: ~/.oh-my-zsh
+
+# powerlevel10k https://github.com/romkatv/powerlevel10k
+- name: install powerlevel10k.
+  command: git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
+  args:
+    creates: ~/.oh-my-zsh/custom/themes/powerlevel10k
+
+# Source code pro font
+- name: install Source code pro font.
+  command: wget https://github.com/powerline/fonts/blob/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -p /Library/Fonts
+  args:
+    creates: ~/Library/Fonts/Source Code Pro for Powerline.otf
+
 # Custom Terminal theme.
 - name: Get current Terminal profile.
   command: defaults read com.apple.terminal 'Default Window Settings'
@@ -8,21 +26,21 @@
 
 - name: Ensure custom Terminal profile is added.
   copy:
-    src: files/terminal/JJG-Term.terminal
-    dest: /tmp/JJG-Term.terminal
+    src: files/terminal/Solarized-Dark.terminal
+    dest: /tmp/Solarized-Dark.terminal
   changed_when: false
-  when: "'JJG-Term' not in terminal_theme.stdout"
+  when: "'Solarized-Dark' not in terminal_theme.stdout"
 
 - name: Ensure custom Terminal profile is added.
-  command: open /tmp/JJG-Term.terminal
+  command: open /tmp/Solarized-Dark.terminal
   changed_when: false
-  when: "'JJG-Term' not in terminal_theme.stdout"
+  when: "'Solarized-Dark' not in terminal_theme.stdout"
 
 # TODO: This doesn't work in Yosemite. Consider a different solution?
 - name: Ensure custom Terminal profile is set as default.
   command: "{{ item }}"
   with_items:
-    - defaults write com.apple.terminal 'Default Window Settings' -string JJG-Term
-    - defaults write com.apple.terminal 'Startup Window Settings' -string JJG-Term
+    - defaults write com.apple.terminal 'Default Window Settings' -string Solarized-Dark
+    - defaults write com.apple.terminal 'Startup Window Settings' -string Solarized-Dark
   changed_when: false
-  when: "'JJG-Term' not in terminal_theme.stdout"
+  when: "'Solarized-Dark' not in terminal_theme.stdout"

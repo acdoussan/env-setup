@@ -1,0 +1,35 @@
+---
+- name: install centaur emacs.
+  command: git clone --depth 1 https://github.com/seagle0128/.emacs.d.git ~/.emacs.d
+  args:
+    creates: ~/.emacs.d
+
+- name: Set config files.
+  set_fact:
+    emacs_config_files:
+      - .emacs.d/custom.el
+      - .emacs.d/custom-post.el
+
+- name: Ensure emacs config files are links.
+  command: "ls -F {{ dotfiles_home }}/{{ item }}"
+  register: existing_config_file_info
+  failed_when: false
+  check_mode: false
+  changed_when: false
+  with_items: "{{ emacs_config_files }}"
+
+- name: Remove existing emacs config files if a replacement is being linked.
+  file:
+    path: "{{ dotfiles_home }}/{{ dotfiles_files[item.0] }}"
+    state: absent
+  when: "'@' not in item.1.stdout"
+  with_indexed_items: "{{ existing_config_file_info.results }}"
+
+- name: Link config files.
+  file:
+    src: "{{ dotfiles_repo_local_destination }}/{{ item }}"
+    dest: "{{ dotfiles_home }}/{{ item }}"
+    state: link
+    mode: 0644
+  become: false
+  with_items: "{{ emacs_config_files }}"

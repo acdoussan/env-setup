@@ -4,6 +4,18 @@
   vars_files:
     - default.config.yml
 
+- hosts: work
+
+  vars_files:
+    - work.config.yml
+
+- hosts: personal
+
+  vars_files:
+    - personal.config.yml
+
+- hosts: all
+
   pre_tasks:
     - name: Include playbook configuration.
       include_vars: "{{ item }}"
@@ -44,6 +56,11 @@
     - import_tasks: tasks/sublime-text.yml
       when: configure_sublime
       tags: ['sublime-text']
+
+    # depends on dotfiles
+    - import_tasks: tasks/emacs.yml
+      when: configure_emacs
+      tags: ['emacs']
 
     - block:
         - name: Run configured post-provision ansible task files.

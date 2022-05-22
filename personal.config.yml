@@ -1,0 +1,14 @@
+---
+homebrew_cask_apps:
+  - docker
+  - google-chrome
+  - emacs
+  - spotify
+  - vlc
+  - postman
+  # additional
+  - slack
+  - bitwarden
+  - wireguard-tools
+  - discord
+  - plex

@@ -3,3 +3,7 @@
 - name: Run .osx dotfiles.
   command: "{{ osx_script }}"
   changed_when: false
+
+- name: Run .defaultbrowser.scpt dotfiles.
+  command: "{{ defaultbrowser_script }} {{defaultbrowser_browser}}"
+  changed_when: false
