@@ -1,10 +1,12 @@
 ---
 # oh-my-zsh https://github.com/robbyrussell/oh-my-zsh
+- local_action: stat path=/tmp/oh-my-zsh-install.sh
+  register: oh_my_zsh_install_file
+
 - name: download oh my zsh install script.
   command: wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/oh-my-zsh-install.sh
   register: ohmyzsh_download
-  args:
-    creates: /tmp/oh-my-zsh-install.sh
+  when: oh_my_zsh_install_file.stat.exists is false
 
 - name: clean oh my zsh install script.
   command: dos2unix /tmp/oh-my-zsh-install.sh
@@ -16,22 +18,28 @@
     mode: +x
   when: ohmyzsh_download.changed
 
+- local_action: stat path=~/.oh-my-zsh
+  register: oh_my_zsh_folder
+
 - name: run oh my zsh install script.
   command: sh -c /tmp/oh-my-zsh-install.sh
-  args:
-    creates: ~/.oh-my-zsh
+  when: oh_my_zsh_folder.stat.exists is false
 
 # powerlevel10k https://github.com/romkatv/powerlevel10k
+- local_action: stat path=~/.oh-my-zsh/custom/themes/powerlevel10k
+  register: powerlevel10k_file
+
 - name: install powerlevel10k.
   command: git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
-  args:
-    creates: ~/.oh-my-zsh/custom/themes/powerlevel10k
+  when: powerlevel10k_file.stat.exists is false
 
 # Source code pro font
+- local_action: stat path=/Library/Fonts/SourceCodeProForPowerline.otf
+  register: powerline_font_file
+
 - name: install Source code pro font.
   command: wget https://raw.githubusercontent.com/powerline/fonts/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -O /Library/Fonts/SourceCodeProForPowerline.otf
-  args:
-    creates: ~/Library/Fonts/SourceCodeProForPowerline.otf
+  when: powerline_font_file.stat.exists is false
 
 # Custom Terminal theme.
 - name: Get current Terminal profile.
