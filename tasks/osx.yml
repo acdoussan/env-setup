@@ -5,5 +5,5 @@
   changed_when: false
 
 - name: Run .defaultbrowser.scpt dotfiles.
-  command: "{{ defaultbrowser_script }} {{defaultbrowser_browser}}"
+  command: "osascript {{ defaultbrowser_script }} {{defaultbrowser_browser}}"
   changed_when: false
