@@ -1,7 +1,23 @@
 ---
 # oh-my-zsh https://github.com/robbyrussell/oh-my-zsh
-- name: install oh my zsh.
-  command: sh -c "$(wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)"
+- name: download oh my zsh install script.
+  command: wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/oh-my-zsh-install.sh
+  register: ohmyzsh_download
+  args:
+    creates: /tmp/oh-my-zsh-install.sh
+
+- name: clean oh my zsh install script.
+  command: dos2unix /tmp/oh-my-zsh-install.sh
+  when: ohmyzsh_download.changed
+
+- name: make oh my zsh install script executable
+  file:
+    dest: /tmp/oh-my-zsh-install.sh
+    mode: +x
+  when: ohmyzsh_download.changed
+
+- name: run oh my zsh install script.
+  command: sh -c /tmp/oh-my-zsh-install.sh
   args:
     creates: ~/.oh-my-zsh
 
@@ -13,9 +29,9 @@
 
 # Source code pro font
 - name: install Source code pro font.
-  command: wget https://github.com/powerline/fonts/blob/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -p /Library/Fonts
+  command: wget https://raw.githubusercontent.com/powerline/fonts/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -O /Library/Fonts/SourceCodeProForPowerline.otf
   args:
-    creates: ~/Library/Fonts/Source Code Pro for Powerline.otf
+    creates: ~/Library/Fonts/SourceCodeProForPowerline.otf
 
 # Custom Terminal theme.
 - name: Get current Terminal profile.

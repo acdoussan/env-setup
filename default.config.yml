@@ -25,7 +25,7 @@ sudoers_custom_config: ''
 #   # Allow users in admin group to use sudo with no password.
 #   %admin ALL=(ALL) NOPASSWD: ALL
 
-dotfiles_repo: https://gitlab.com/acdoussan/configs.git
+dotfiles_repo: git@gitlab.com:acdoussan/configs.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/git/configs
 dotfiles_files:
@@ -44,6 +44,7 @@ homebrew_installed_packages:
   - java
   - tmux
   - defaultbrowser
+  - dos2unix
 
 homebrew_taps:
   - homebrew/core
@@ -57,14 +58,16 @@ homebrew_cask_apps:
   - spotify
   - vlc
   - postman
+  - stats
 
 # See `geerlingguy.mas` role documentation for usage instructions.
 mas_installed_apps: []
 mas_email: ""
 mas_password: ""
 
-osx_script: "~/.osx --no-restart"
-defaultbrowser_script: "~/.defaultbrowser.scpt chrome"
+osx_script: "~/.osx"
+osx_script_options: "--no-restart"
+defaultbrowser_script: "~/.defaultbrowser.scpt"
 defaultbrowser_browser: "chrome"
 
 # Install packages from other package managers.

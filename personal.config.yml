@@ -1,4 +1,17 @@
 ---
+homebrew_installed_packages:
+  # - ansible # Installed via Pip.
+  - git
+  - node
+  - nvm
+  - wget
+  - java
+  - tmux
+  - defaultbrowser
+  - dos2unix
+  # additional
+  - wireguard-tools
+  
 homebrew_cask_apps:
   - docker
   - google-chrome
@@ -6,9 +19,9 @@ homebrew_cask_apps:
   - spotify
   - vlc
   - postman
+  - stats
   # additional
   - slack
   - bitwarden
-  - wireguard-tools
   - discord
   - plex
