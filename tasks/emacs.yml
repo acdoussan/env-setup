@@ -1,8 +1,40 @@
 ---
+# install emacs
+- name: Check if emacs is installed
+  stat: path={{ homebrew_cask_appdir }}/Emacs.app
+  register: emacs_installed
+
+- name: Install emacs if not installed
+  block:
+    - name: Create temporary directory to download emacs formula
+      tempfile:
+        state: directory
+      register: tempdir_emacs_rb
+
+    - name: Download formula emacs.rb version 26.3
+      get_url:
+        url: https://raw.githubusercontent.com/Homebrew/homebrew-cask/d2a0fc341a5ec7a528748770350395bf769bc7de/Casks/emacs.rb
+        dest: "{{ tempdir_emacs_rb.path }}/emacs.rb"
+
+    - name: Install emacs 26.3
+      homebrew_cask:
+        name: "{{ tempdir_emacs_rb.path }}/emacs.rb"
+        state: present
+  when: emacs_installed.stat.exists is false
+
+- local_action: stat path=~/.emacs.d/README.md
+  register: centaur_readme_file
+
+- local_action: stat path=~/.emacs.d
+  register: emacs_folder
+
+- name: move .emacs.d if it exists but does not have readme
+  command: mv ~/.emacs.d ~/.emacs.d.bak
+  when: emacs_folder.stat.exists and centaur_readme_file.stat.exists is false
+
 - name: install centaur emacs.
   command: git clone --depth 1 https://github.com/seagle0128/.emacs.d.git ~/.emacs.d
-  args:
-    creates: ~/.emacs.d
+  when: centaur_readme_file.stat.exists is false
 
 - name: Set config files.
   set_fact:

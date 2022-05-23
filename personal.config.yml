@@ -15,7 +15,6 @@ homebrew_installed_packages:
 homebrew_cask_apps:
   - docker
   - google-chrome
-  - emacs
   - spotify
   - vlc
   - postman

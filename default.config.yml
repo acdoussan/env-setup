@@ -54,7 +54,6 @@ homebrew_cask_appdir: /Applications
 homebrew_cask_apps:
   - docker
   - google-chrome
-  - emacs
   - spotify
   - vlc
   - postman
