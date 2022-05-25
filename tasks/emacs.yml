@@ -12,12 +12,12 @@
         state: directory
       register: tempdir_emacs_rb
 
-    - name: Download formula emacs.rb version 26.3
+    - name: Download formula emacs.rb version 27.1
       get_url:
-        url: https://raw.githubusercontent.com/Homebrew/homebrew-cask/d2a0fc341a5ec7a528748770350395bf769bc7de/Casks/emacs.rb
+        url: https://raw.githubusercontent.com/Homebrew/homebrew-cask/ed3bb3675cbbb31c94a823a74a4da4845282b89a/Casks/emacs.rb
         dest: "{{ tempdir_emacs_rb.path }}/emacs.rb"
 
-    - name: Install emacs 26.3
+    - name: Install emacs 27.1
       homebrew_cask:
         name: "{{ tempdir_emacs_rb.path }}/emacs.rb"
         state: present

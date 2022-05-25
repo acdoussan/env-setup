@@ -18,6 +18,17 @@
       include_vars: work.config.yml
       when: inventory_hostname in groups['work']
 
+    - name: confirm non arm system
+      pause:
+        prompt: system is not arm, continue? (yes|no)
+      when: ansible_machine != 'arm64'
+      register: confirm_arm
+
+    - name: fail if not confirmed
+      fail:
+        msg: prompt not confirmed
+      when: confirm_arm.user_input != 'yes'
+
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
