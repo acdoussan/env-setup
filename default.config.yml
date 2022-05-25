@@ -36,7 +36,7 @@ dotfiles_files:
   - .defaultbrowser.scpt
 
 homebrew_installed_packages:
-  # - ansible # Installed via Pip.
+  - ansible
   - git
   - node
   - nvm

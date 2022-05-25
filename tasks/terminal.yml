@@ -1,32 +1,40 @@
 ---
 # oh-my-zsh https://github.com/robbyrussell/oh-my-zsh
-- local_action: stat path=/tmp/oh-my-zsh-install.sh
-  register: oh_my_zsh_install_file
-
-- name: download oh my zsh install script.
-  command: wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/oh-my-zsh-install.sh
-  register: ohmyzsh_download
-  when: oh_my_zsh_install_file.stat.exists is false
-
-- name: clean oh my zsh install script.
-  command: dos2unix /tmp/oh-my-zsh-install.sh
-  when: ohmyzsh_download.changed
-
-- name: make oh my zsh install script executable
-  file:
-    dest: /tmp/oh-my-zsh-install.sh
-    mode: +x
-  when: ohmyzsh_download.changed
-
-- local_action: stat path=~/.oh-my-zsh
+- name: check for zsh folder
+  stat:
+    path: ~/.oh-my-zsh
   register: oh_my_zsh_folder
 
-- name: run oh my zsh install script.
-  command: sh -c /tmp/oh-my-zsh-install.sh
+- name: install oh my zsh
+  block:
+    - name: check for zsh install file
+      stat:
+        path: /tmp/oh-my-zsh-install.sh
+      register: oh_my_zsh_install_file
+
+    - name: download oh my zsh install script.
+      command: wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/oh-my-zsh-install.sh
+      register: ohmyzsh_download
+      when: oh_my_zsh_install_file.stat.exists
+
+    - name: clean oh my zsh install script.
+      command: dos2unix /tmp/oh-my-zsh-install.sh
+      when: ohmyzsh_download.changed
+
+    - name: make oh my zsh install script executable
+      file:
+        dest: /tmp/oh-my-zsh-install.sh
+        mode: +x
+      when: ohmyzsh_download.changed
+
+    - name: run oh my zsh install script.
+      command: sh -c /tmp/oh-my-zsh-install.sh
   when: oh_my_zsh_folder.stat.exists is false
 
 # powerlevel10k https://github.com/romkatv/powerlevel10k
-- local_action: stat path=~/.oh-my-zsh/custom/themes/powerlevel10k
+- name: check for powerlevel10k folder
+  stat:
+    path: ~/.oh-my-zsh/custom/themes/powerlevel10k
   register: powerlevel10k_file
 
 - name: install powerlevel10k.
@@ -34,11 +42,13 @@
   when: powerlevel10k_file.stat.exists is false
 
 # Source code pro font
-- local_action: stat path=/Library/Fonts/SourceCodeProForPowerline.otf
+- name: check for source code pro font
+  stat:
+    path: /Library/Fonts/Source Code Pro for Powerline.otf
   register: powerline_font_file
 
 - name: install Source code pro font.
-  command: wget https://raw.githubusercontent.com/powerline/fonts/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -O /Library/Fonts/SourceCodeProForPowerline.otf
+  command: wget https://raw.githubusercontent.com/powerline/fonts/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -O /Library/Fonts/Source\ Code\ Pro\ for\ Powerline.otf
   when: powerline_font_file.stat.exists is false
 
 # Custom Terminal theme.

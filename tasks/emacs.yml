@@ -1,7 +1,8 @@
 ---
 # install emacs
 - name: Check if emacs is installed
-  stat: path={{ homebrew_cask_appdir }}/Emacs.app
+  stat:
+    path: "{{ homebrew_cask_appdir }}/Emacs.app"
   register: emacs_installed
 
 - name: Install emacs if not installed
@@ -22,10 +23,14 @@
         state: present
   when: emacs_installed.stat.exists is false
 
-- local_action: stat path=~/.emacs.d/README.md
+- name: check if centaur readme file is present
+  stat:
+    path: ~/.emacs.d/README.md
   register: centaur_readme_file
 
-- local_action: stat path=~/.emacs.d
+- name: check if emacs folder is present
+  stat:
+    path: ~/.emacs.d
   register: emacs_folder
 
 - name: move .emacs.d if it exists but does not have readme
