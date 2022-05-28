@@ -12,8 +12,10 @@ This playbook installs and configures most of the software I use for web and sof
      3. Install Ansible: `pip3 install ansible`
 
   3. Clone or download this repository to your local drive.
-  4. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
-  5. Run `ansible-playbook main.yml --ask-become-pass -i inventory/{desired env}` inside this directory. Enter your account password when prompted for the 'BECOME' password.
+  4. Allow apps from unidentified developers `sudo spctl --master-disable`
+     1. This is used to install the solarized terminal theme
+  5. Run `ansible-galaxy install -r requirements.yml` inside this directory to install required Ansible roles.
+  6. Run `ansible-playbook main.yml --ask-become-pass -i inventory/{desired env}` inside this directory. Enter your account password when prompted for the 'BECOME' password.
 
 > Note: If some Homebrew commands fail, you might need to agree to Xcode's license or fix some other Brew issue. Run `brew doctor` to see if this is the case.
 
@@ -46,18 +48,41 @@ You can filter which part of the provisioning process to run by specifying a set
 
 ### Things that still need to be done manually
 
-#### Post install on mac
+#### Post install on all mac
+Rerun playbook until there are no changes
+
+Reboot
+
+Run again - ensure no changes
+
+Reblock unidentified developers System Preferences -> Security & Privacy -> General -> Allow apps to be downloaded from App Store & identified developers
+
+Update terminal default to Solarized-Dark Terminal -> Preferences -> default at bottom with Solarized-Dark selected
+
 add the following to System Preferences -> Security & Privacy -> privacy -> Full Disk Access
 - Emacs.app
-- /usr/bin/ruby
+- /usr/bin/ruby (cmd + shift + g to enter arbitrary path)
 - Terminal
 
 Update Finder to show hard drives in the side bar: Finder -> Preferences -> Sidebar -> Hard Disks
-
-Update Finder to show the home directory in the side bar: Finder -> Preferences -> Sidebar -> acdoussan
+Update Finder to show the home directory in the side bar: Finder -> Preferences -> Sidebar -> acdoussan (or other username)
 
 Enable battery percentage in menu bar System Preferences -> Dock & Menu Bar -> Battery -> Show Percentage
 
+Configure battery settings System Preferences -> Battery
+- Battery -> Display off after 15 mins
+- Power Adapter -> Display off after 30 mins
+
+Configure screen saver System Preferences -> Desktop & Screen Saver -> Screen Saver -> Show screen saver after 5 minutes
+
+Open emacs & allow it to install, might take two opens, save created file
+
+Open Stats & disable battery, enable start a login, order in header (right to left) CPU %, GPU %, RAM %, SSD, SSD R/W #s w/ pictogram characters, NET, Network #s w/ pictogram characters
+
+#### Personal post install on mac
+set up new wireguard client in router & setup wireguard app
+
+Set up samba network shares
 
 ## Testing the Playbook
 
@@ -74,3 +99,7 @@ Check out [Ansible for DevOps](https://www.ansiblefordevops.com/), which teaches
 This project was inspired by [Jeff Geerling](https://www.jeffgeerling.com/) (originally inspired by [MWGriffin/ansible-playbooks](https://github.com/MWGriffin/ansible-playbooks)).
 
 Original Repository: https://github.com/geerlingguy/mac-dev-playbook/
+
+## TODO / Known Issues
+dockutil adds items too quickly, see if there is an open issue on github for this - workaround, run playbook multiple times until it passes
+Emacs install needs to happen before dockutil - workaround, run playbook again
