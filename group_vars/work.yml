@@ -17,10 +17,12 @@ homebrew_installed_packages:
   - defaultbrowser
   - dos2unix
   - coreutils
+  - emacs-plus@27
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
+  - d12frosted/emacs-plus
 
 homebrew_cask_apps:
   - docker

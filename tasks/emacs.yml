@@ -5,22 +5,11 @@
     path: "{{ homebrew_cask_appdir }}/Emacs.app"
   register: emacs_installed
 
-- name: Install emacs if not installed
-  block:
-    - name: Create temporary directory to download emacs formula
-      tempfile:
-        state: directory
-      register: tempdir_emacs_rb
-
-    - name: Download formula emacs.rb version 27.1
-      get_url:
-        url: https://raw.githubusercontent.com/Homebrew/homebrew-cask/ed3bb3675cbbb31c94a823a74a4da4845282b89a/Casks/emacs.rb
-        dest: "{{ tempdir_emacs_rb.path }}/emacs.rb"
-
-    - name: Install emacs 27.1
-      homebrew_cask:
-        name: "{{ tempdir_emacs_rb.path }}/emacs.rb"
-        state: present
+- name: Ensure emacs is installed.
+  copy:
+    src: "/opt/homebrew/Cellar/emacs-plus@27/27.2/Emacs.app"
+    dest: "{{ homebrew_cask_appdir }}"
+    remote_src: yes
   when: emacs_installed.stat.exists is false
 
 - name: check if centaur readme file is present
