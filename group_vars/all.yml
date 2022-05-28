@@ -77,11 +77,5 @@ pip_packages:
  - name: python-lsp-server[all]
    state: present # present/absent/latest, default: present
 
-# Set to 'true' to configure Sublime Text.
-configure_sublime: false
-sublime_base_path: '~/Library/Application Support/Sublime Text'
-sublime_config_path: "Packages/User"
-sublime_package_control: []
-
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []

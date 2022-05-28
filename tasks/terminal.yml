@@ -64,7 +64,7 @@
 # zshenv
 - name: template zshenv.
   template:
-    src: files/terminal/.zshenv.j2
+    src: templates/.zshenv.j2
     dest: ~/.zshenv
 
 - name: check for zshenv.local.

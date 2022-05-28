@@ -50,10 +50,6 @@
       when: configure_extra_packages
       tags: ['extra-packages']
 
-    - import_tasks: tasks/sublime-text.yml
-      when: configure_sublime
-      tags: ['sublime-text']
-
     # depends on dotfiles
     - import_tasks: tasks/emacs.yml
       when: configure_emacs
