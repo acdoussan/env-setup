@@ -1,0 +1,103 @@
+---
+configure_dotfiles: true
+configure_terminal: true
+configure_osx: true
+configure_extra_packages: true
+configure_emacs: true
+configure_dock: true
+
+homebrew_installed_packages:
+  - ansible
+  - git
+  - node
+  - nvm
+  - wget
+  - java
+  - tmux
+  - defaultbrowser
+  - dos2unix
+  - coreutils
+
+homebrew_taps:
+  - homebrew/core
+  - homebrew/cask
+
+homebrew_cask_apps:
+  - docker
+  - google-chrome
+  - spotify
+  - vlc
+  - postman
+  - stats
+  - slack
+  - hpedrorodrigues/tools/dockutil # temp until dockutil 3.0 is default on homebrew
+  # additional
+  - bitwarden
+  - discord
+  - plex
+
+mas_installed_apps: 
+  - { id: 1451685025, name: "WireGuard" }
+mas_email: "acdoussan@gmail.com"
+
+dockitems_persist:
+  - name: "App Store"
+    path: "/Applications/App Store.app/"
+    pos: 1
+  - name: "System Preferences"
+    path: "/Applications/System Preferences.app/"
+    pos: 2
+  - name: "WireGuard"
+    path: "/Applications/WireGuard.app/"
+    pos: 3
+  - name: "Google Chrome"
+    path: "/Applications/Google Chrome.app/"
+    pos: 4
+  - name: "Safari"
+    path: "/Applications/Safari.app/"
+    pos: 5
+  - name: "Bitwarden"
+    path: "/Applications/Bitwarden.app/"
+    pos: 6
+  - name: "Messages"
+    path: "/Applications/Messages.app/"
+    pos: 7
+  - name: "FaceTime"
+    path: "/Applications/FaceTime.app/"
+    pos: 8
+  - name: "Slack"
+    path: "/Applications/Slack.app/"
+    pos: 9
+  - name: "Discord"
+    path: "/Applications/Discord.app/"
+    pos: 10
+  - name: "Photos"
+    path: "/Applications/Photos.app/"
+    pos: 11
+  - name: "Calendar"
+    path: "/Applications/Calendar.app/"
+    pos: 12
+  - name: "Contacts"
+    path: "/Applications/Contacts.app/"
+    pos: 13
+  - name: "Notes"
+    path: "/Applications/Notes.app/"
+    pos: 14
+  - name: "TV"
+    path: "/Applications/TV.app/"
+    pos: 15
+  - name: "Plex"
+    path: "/Applications/Plex.app/"
+    pos: 16
+  - name: "Spotify"
+    path: "/Applications/Spotify.app/"
+    pos: 17
+  - name: "Terminal"
+    path: "/Applications/Terminal.app/"
+    pos: 18
+  - name: "Emacs"
+    path: "/Applications/Emacs.app/"
+    pos: 19
+  - name: "Postman"
+    path: "/Applications/Postman.app/"
+    pos: 20

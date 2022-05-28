@@ -1,7 +1,5 @@
 ---
 - hosts: all
-  vars_files:
-    - default.config.yml
 
   pre_tasks:
     - name: Include playbook configuration.
@@ -9,14 +7,6 @@
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
       tags: ['always']
-
-    - name: Include personal vars.
-      include_vars: personal.config.yml
-      when: inventory_hostname in groups['personal']
-
-    - name: Include work vars.
-      include_vars: work.config.yml
-      when: inventory_hostname in groups['work']
 
     - name: confirm non arm system
       pause:
@@ -27,7 +17,7 @@
     - name: fail if not confirmed
       fail:
         msg: prompt not confirmed
-      when: confirm_arm.user_input != 'yes'
+      when: ansible_machine != 'arm64' and confirm_arm.user_input != 'yes'
 
   roles:
     - role: elliotweiser.osx-command-line-tools
@@ -57,6 +47,7 @@
       tags: ['osx']
 
     - import_tasks: tasks/extra-packages.yml
+      when: configure_extra_packages
       tags: ['extra-packages']
 
     - import_tasks: tasks/sublime-text.yml

@@ -1,0 +1,19 @@
+
+{% if ansible_os_family == "Darwin" %}
+
+export HOMEBREW=/opt/homebrew
+export PATH=$HOMEBREW/bin:$PATH
+
+alias ls='gls --color=auto'
+
+# apply solarize ls colors
+eval `gdircolors ~/.dircolors`
+
+{% else %}
+
+# apply solarize ls colors
+eval `dircolors ~/.dircolors`
+
+{% endif %}
+
+source ~/.zshenv.local

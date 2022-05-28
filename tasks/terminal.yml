@@ -51,6 +51,33 @@
   command: wget https://raw.githubusercontent.com/powerline/fonts/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -O /Library/Fonts/Source\ Code\ Pro\ for\ Powerline.otf
   when: powerline_font_file.stat.exists is false
 
+# dircolors
+- name: check for dircolors.
+  stat:
+    path: ~/.dircolors
+  register: dircolors_folder
+
+- name: install dircolors.
+  command: wget https://raw.githubusercontent.com/seebi/dircolors-solarized/master/dircolors.256dark -O ~/.dircolors
+  when: dircolors_folder.stat.exists is false
+
+# zshenv
+- name: template zshenv.
+  template:
+    src: files/terminal/.zshenv.j2
+    dest: ~/.zshenv
+
+- name: check for zshenv.local.
+  stat:
+    path: ~/.zshenv.local
+  register: zshenv_local_file
+
+- name: create zshenv.local.
+  copy:
+    src: files/terminal/.zshenv.local
+    dest: ~/.zshenv.local
+  when: zshenv_local_file.stat.exists is false
+
 # Custom Terminal theme.
 - name: Get current Terminal profile.
   command: defaults read com.apple.terminal 'Default Window Settings'
