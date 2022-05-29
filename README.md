@@ -79,10 +79,15 @@ Open emacs & allow it to install, might take two opens, save created file
 
 Open Stats & disable battery, enable start a login, order in header (right to left) CPU %, GPU %, RAM %, SSD, SSD R/W #s w/ pictogram characters, NET, Network #s w/ pictogram characters
 
+System Preferences -> Siri -> uncheck show siri in menu bar
+System Preferences -> dock & menu bar -> Spotlight -> uncheck show in menu bar
+
 #### Personal post install on mac
 set up new wireguard client in router & setup wireguard app
 
 Set up samba network shares
+- connect via finder -> go -> connect to server... and browse network for the truenas share
+- add login items by going to System Preferences -> Users & Groups -> user -> login items, clicking the +, and selecting all of the folders in the truenas server
 
 ## Testing the Playbook
 
