@@ -1,8 +1,12 @@
 
 {% if ansible_os_family == "Darwin" %}
 
+  {% if ansible_machine == 'arm64' %}
+
 export HOMEBREW=/opt/homebrew
 export PATH=$HOMEBREW/bin:$PATH
+
+  {% endif %}
 
 alias ls='gls --color=auto'
 

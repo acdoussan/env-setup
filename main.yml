@@ -6,54 +6,54 @@
       include_vars: "{{ item }}"
       with_fileglob:
         - "{{ playbook_dir }}/config.yml"
-      tags: ['always']
+      tags: ["always"]
 
-    - name: confirm non arm system
-      pause:
-        prompt: system is not arm, continue? (yes|no)
-      when: ansible_machine != 'arm64'
-      register: confirm_arm
+    - name: check for emulation if on intel mac
+      command: sysctl -in sysctl.proc_translated
+      register: proc_translated
+      when: ansible_os_family == "Darwin" and ansible_machine != 'arm64'
+      changed_when: false
 
-    - name: fail if not confirmed
+    - name: fail if emulated intel on mac
       fail:
-        msg: prompt not confirmed
-      when: ansible_machine != 'arm64' and confirm_arm.user_input != 'yes'
+        msg: attempting to run playbook on m1 mac but with an emulated enviornment, please use a native terminal
+      when: ansible_os_family == "Darwin" and ansible_machine != 'arm64' and proc_translated.stdout == "1"
 
   roles:
     - role: elliotweiser.osx-command-line-tools
     - role: geerlingguy.mac.homebrew
-      tags: ['homebrew']
+      tags: ["homebrew"]
     - role: geerlingguy.dotfiles
       when: configure_dotfiles
-      tags: ['dotfiles']
+      tags: ["dotfiles"]
     - role: geerlingguy.mac.mas
       when: mas_installed_apps or mas_installed_app_ids
-      tags: ['mas']
+      tags: ["mas"]
     - role: geerlingguy.mac.dock
       when: configure_dock
-      tags: ['dock']
+      tags: ["dock"]
 
   tasks:
     - import_tasks: tasks/sudoers.yml
       when: configure_sudoers
-      tags: ['sudoers']
+      tags: ["sudoers"]
 
     - import_tasks: tasks/terminal.yml
       when: configure_terminal
-      tags: ['terminal']
+      tags: ["terminal"]
 
     - import_tasks: tasks/osx.yml
       when: configure_osx
-      tags: ['osx']
+      tags: ["osx"]
 
     - import_tasks: tasks/extra-packages.yml
       when: configure_extra_packages
-      tags: ['extra-packages']
+      tags: ["extra-packages"]
 
     # depends on dotfiles
     - import_tasks: tasks/emacs.yml
       when: configure_emacs
-      tags: ['emacs']
+      tags: ["emacs"]
 
     - block:
         - name: Run configured post-provision ansible task files.
@@ -61,4 +61,4 @@
           loop_control:
             loop_var: outer_item
           with_fileglob: "{{ post_provision_tasks|default(omit) }}"
-      tags: ['post']
+      tags: ["post"]

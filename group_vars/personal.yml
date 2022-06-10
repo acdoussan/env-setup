@@ -32,13 +32,13 @@ homebrew_cask_apps:
   - postman
   - stats
   - slack
-  - hpedrorodrigues/tools/dockutil # temp until dockutil 3.0 is default on homebrew
-  # additional
+  - hpedrorodrigues/tools/dockutil # temp until dockutil 3.0 is default on homebrew, ref: https://github.com/kcrawford/dockutil/issues/127
   - bitwarden
+  # additional
   - discord
   - plex
 
-mas_installed_apps: 
+mas_installed_apps:
   - { id: 1451685025, name: "WireGuard" }
 mas_email: "acdoussan@gmail.com"
 
