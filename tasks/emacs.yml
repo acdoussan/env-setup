@@ -20,6 +20,8 @@
     remote_src: yes
   when: emacs_installed.stat.exists is false and ansible_machine != 'arm64' and ansible_os_family == "Darwin"
 
+# TODO: install emacs for linux
+
 - name: check if centaur readme file is present
   stat:
     path: ~/.emacs.d/README.md

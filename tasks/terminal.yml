@@ -41,15 +41,18 @@
   command: git clone --depth=1 https://github.com/romkatv/powerlevel10k.git ~/.oh-my-zsh/custom/themes/powerlevel10k
   when: powerlevel10k_file.stat.exists is false
 
+# TODO: install font for linux
+  
 # Source code pro font
 - name: check for source code pro font
   stat:
     path: /Library/Fonts/Source Code Pro for Powerline.otf
   register: powerline_font_file
+  when: ansible_os_family == "Darwin"
 
 - name: install Source code pro font.
   command: wget https://raw.githubusercontent.com/powerline/fonts/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf -O /Library/Fonts/Source\ Code\ Pro\ for\ Powerline.otf
-  when: powerline_font_file.stat.exists is false
+  when: powerline_font_file.stat.exists is false and ansible_os_family == "Darwin"
 
 # dircolors
 - name: check for dircolors.
@@ -84,18 +87,19 @@
   register: terminal_theme
   changed_when: false
   check_mode: false
+  when: ansible_os_family == "Darwin"
 
 - name: Ensure custom Terminal profile is added.
   copy:
     src: files/terminal/Solarized-Dark.terminal
     dest: /tmp/Solarized-Dark.terminal
   changed_when: false
-  when: "'Solarized-Dark' not in terminal_theme.stdout"
+  when: "'Solarized-Dark' not in terminal_theme.stdout" and ansible_os_family == "Darwin"
 
 - name: Ensure custom Terminal profile is added.
   command: open /tmp/Solarized-Dark.terminal
   changed_when: false
-  when: "'Solarized-Dark' not in terminal_theme.stdout"
+  when: "'Solarized-Dark' not in terminal_theme.stdout" and ansible_os_family == "Darwin"
 
 # TODO: This doesn't work in Yosemite. Consider a different solution?
 - name: Ensure custom Terminal profile is set as default.
@@ -104,4 +108,6 @@
     - defaults write com.apple.terminal 'Default Window Settings' -string Solarized-Dark
     - defaults write com.apple.terminal 'Startup Window Settings' -string Solarized-Dark
   changed_when: false
-  when: "'Solarized-Dark' not in terminal_theme.stdout"
+  when: "'Solarized-Dark' not in terminal_theme.stdout" and ansible_os_family == "Darwin"
+
+# TODO: terminal theme for linux

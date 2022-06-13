@@ -36,6 +36,7 @@ homebrew_cask_apps:
   - bitwarden
   # additional
   - quip
+  - dcv-viewer
 
 dockitems_remove:
   - Launchpad

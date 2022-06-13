@@ -1,0 +1,7 @@
+---
+configure_dotfiles: true
+configure_terminal: true
+configure_osx: false
+configure_extra_packages: true
+configure_emacs: true
+configure_dock: false
