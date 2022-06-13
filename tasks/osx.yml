@@ -7,3 +7,17 @@
 - name: Run .defaultbrowser.scpt dotfiles.
   command: "osascript {{ defaultbrowser_script }} {{defaultbrowser_browser}}"
   changed_when: false
+
+- name: Set keybindings dest var.
+  set_fact:
+    keybindings_dest_path: ~/Library/KeyBindings/DefaultKeyBindings.dict
+
+- name: Make sure KeyBindings dir exists
+  file:
+    path: "{{ keybindings_dest_path | dirname }}"
+    state: directory
+
+- name: Template default key bindings
+  template:
+    src: templates/DefaultKeyBindings.dict.j2
+    dest: "{{ keybindings_dest_path }}"
