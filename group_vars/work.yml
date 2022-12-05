@@ -9,6 +9,7 @@ configure_dock: true
 homebrew_installed_packages:
   - ansible
   - git
+  - git-lfs
   - node
   - nvm
   - wget
@@ -39,6 +40,10 @@ homebrew_cask_apps:
   # additional
   - quip
   - dcv-viewer
+
+mas_installed_apps:
+  - { id: 1545810067,  name: "Prodrafts" }
+mas_email: "acdoussan@gmail.com"
 
 dockitems_remove:
   - Launchpad
@@ -108,3 +113,6 @@ dockitems_persist:
   - name: "Postman"
     path: "/Applications/Postman.app/"
     pos: 16
+  - name: "Prodrafts"
+    path: "/Applications/Prodrafts.app/"
+    pos: 17

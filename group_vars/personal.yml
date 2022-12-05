@@ -9,6 +9,7 @@ configure_dock: true
 homebrew_installed_packages:
   - ansible
   - git
+  - git-lfs
   - node
   - nvm
   - wget
@@ -42,6 +43,7 @@ homebrew_cask_apps:
 
 mas_installed_apps:
   - { id: 1451685025, name: "WireGuard" }
+  - { id: 1545810067,  name: "Prodrafts" }
 mas_email: "acdoussan@gmail.com"
 
 dockitems_persist:
@@ -108,3 +110,6 @@ dockitems_persist:
   - name: "Postman"
     path: "/Applications/Postman.app/"
     pos: 21
+  - name: "Prodrafts"
+    path: "/Applications/Prodrafts.app/"
+    pos: 22
