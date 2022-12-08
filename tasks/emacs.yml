@@ -1,5 +1,5 @@
 ---
-# install emacs
+# install emacs for macos
 - name: Check if emacs is installed
   stat:
     path: "{{ homebrew_cask_appdir }}/Emacs.app"
@@ -20,7 +20,13 @@
     remote_src: yes
   when: emacs_installed.stat.exists is false and ansible_machine != 'arm64' and ansible_os_family == "Darwin"
 
-# TODO: install emacs for linux
+# install emacs for RedHat flavored linux
+
+- name: Ensure emacs is installed for RedHat.
+  package:
+    name: emacs
+    state: present
+  when: ansible_os_family == "RedHat"
 
 - name: check if centaur readme file is present
   stat:
