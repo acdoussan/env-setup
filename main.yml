@@ -48,6 +48,10 @@
       when: configure_terminal
       tags: ["terminal"]
 
+    - import_tasks: tasks/nvm.yml
+      when: configure_nvm
+      tags: ["nvm"]
+
     - import_tasks: tasks/osx.yml
       when: configure_osx and ansible_os_family == "Darwin"
       tags: ["osx"]
