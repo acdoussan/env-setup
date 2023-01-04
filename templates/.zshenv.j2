@@ -1,3 +1,4 @@
+# Managed by ansbile, see .zshenv.local
 
 {% if ansible_os_family == "Darwin" %}
 
@@ -17,6 +18,9 @@ eval `gdircolors ~/.dircolors`
 
 # apply solarize ls colors
 eval `dircolors ~/.dircolors`
+
+export SNAP=/snap
+export PATH=$SNAP/bin:$PATH
 
 {% endif %}
 
