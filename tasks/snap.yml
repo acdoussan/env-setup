@@ -1,0 +1,19 @@
+# https://forum.snapcraft.io/t/unofficial-snapd-repository-for-amazon-linux-2/24269/2
+- name: Add snap AL2 repository
+  shell: yum-config-manager --add-repo=https://people.canonical.com/~mvo/snapd/amazon-linux2/snapd-amzn2.repo
+  args:
+    creates: /etc/yum.repos.d/snapd-amzn2.repo
+  when: ansible_distribution == "Amazon"
+  become: true
+
+# snapd for everyone else
+- name: Install snapd
+  package:
+    name: snapd
+    state: present
+  notify:
+    - start-snapd-socket
+    - start-snapd-apparmor
+  # emacs installed via homebrew for macos
+  when: ansible_os_family != "Darwin"
+  become: true

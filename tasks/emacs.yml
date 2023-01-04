@@ -20,13 +20,16 @@
     remote_src: yes
   when: emacs_installed.stat.exists is false and ansible_machine != 'arm64' and ansible_os_family == "Darwin"
 
-# install emacs for RedHat flavored linux
+# install emacs for linux
 
-- name: Ensure emacs is installed for RedHat.
-  package:
+- name: install emacs via snap
+  community.general.snap:
     name: emacs
+    classic: true
+    channel: latest/edge
     state: present
-  when: ansible_os_family == "RedHat"
+  when: ansible_os_family != "Darwin"
+  become: true
 
 - name: check if centaur readme file is present
   stat:

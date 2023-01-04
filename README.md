@@ -111,3 +111,4 @@ Original Repository: https://github.com/geerlingguy/mac-dev-playbook/
 dockutil adds items too quickly, see if there is an open issue on github for this - workaround, run playbook multiple times until it passes
 Ansible says dockutil made some change, but it is not reflected in the dock -> restart laptop
 Emacs install needs to happen before dockutil - workaround, run playbook again
+May need to set ANSIBLE_EXECUTABLE on systems with locked down sudo access. Ex: `ANSIBLE_EXECUTABLE=/bin/logbash ansible-playbook main.yml --ask-become-pass -i inventory/linux --tags "emacs"`

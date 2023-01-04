@@ -8,6 +8,13 @@
         - "{{ playbook_dir }}/config.yml"
       tags: ["always"]
 
+    - name: gather os specific variables
+      include_vars: "{{ item }}"
+      with_first_found:
+        - "os_vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+        - "os_vars/{{ ansible_distribution }}.yml"
+      tags: ["always"]
+
     - name: check for emulation if on intel mac
       command: sysctl -in sysctl.proc_translated
       register: proc_translated
@@ -40,9 +47,22 @@
       tags: ["dock"]
 
   tasks:
+
+    # not needed for al2 as snap has to be installed from dedicated repo for al2
+    - name: enable epel on RHEL systems
+      import_role:
+        name: geerlingguy.repo-epel
+      become: true
+      when: configure_epel and ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
+      tags: ["epel"]
+
     - import_tasks: tasks/sudoers.yml
       when: configure_sudoers
       tags: ["sudoers"]
+
+    - import_tasks: tasks/snap.yml
+      when: configure_snap
+      tags: ["snap"]
 
     - import_tasks: tasks/terminal.yml
       when: configure_terminal
@@ -60,7 +80,7 @@
       when: configure_extra_packages
       tags: ["extra-packages"]
 
-    # depends on dotfiles
+    # depends on dotfiles & snap
     - import_tasks: tasks/emacs.yml
       when: configure_emacs
       tags: ["emacs"]
@@ -72,3 +92,6 @@
             loop_var: outer_item
           with_fileglob: "{{ post_provision_tasks|default(omit) }}"
       tags: ["post"]
+
+  handlers:
+    - import_tasks: handlers/main.yml
