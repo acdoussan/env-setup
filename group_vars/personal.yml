@@ -24,11 +24,13 @@ homebrew_installed_packages:
   - emacs-plus@27
   - rbenv
   - ruby-build
+  - hashicorp/tap/terraform
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
   - d12frosted/emacs-plus
+  - hashicorp/tap
 
 homebrew_cask_apps:
   - docker
