@@ -10,9 +10,16 @@
 
     - name: gather os specific variables
       include_vars: "{{ item }}"
-      with_first_found:
-        - "os_vars/{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
-        - "os_vars/{{ ansible_distribution }}.yml"
+      when: os_var_files
+      vars:
+        params:
+          files:
+            - "{{ ansible_distribution }}-{{ ansible_distribution_major_version}}.yml"
+            - "{{ ansible_distribution }}.yml"
+          paths: "os_vars"
+          skip:  true
+        os_var_files: '{{ lookup("first_found", params) | default([]) }}'
+
       tags: ["always"]
 
     - name: check for emulation if on intel mac
