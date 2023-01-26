@@ -33,7 +33,7 @@ sudoers_custom_config: ''
 #   # Allow users in admin group to use sudo with no password.
 #   %admin ALL=(ALL) NOPASSWD: ALL
 
-dotfiles_repo: git@gitlab.com:acdoussan/configs.git
+dotfiles_repo: git@github.com:acdoussan/configs.git
 dotfiles_repo_accept_hostkey: true
 dotfiles_repo_local_destination: ~/git/configs
 dotfiles_files:
