@@ -25,6 +25,7 @@ homebrew_installed_packages:
   - rbenv
   - ruby-build
   - hashicorp/tap/terraform
+  - kubectl
 
 homebrew_taps:
   - homebrew/core
