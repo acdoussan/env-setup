@@ -11,6 +11,7 @@
     - name: gather os specific variables
       include_vars: "{{ item }}"
       when: os_var_files
+      with_items: "{{ os_var_files }}"
       vars:
         params:
           files:
@@ -19,7 +20,6 @@
           paths: "os_vars"
           skip:  true
         os_var_files: '{{ lookup("first_found", params) | default([]) }}'
-
       tags: ["always"]
 
     - name: check for emulation if on intel mac
