@@ -53,8 +53,11 @@
       when: configure_dock and ansible_os_family == "Darwin"
       tags: ["dock"]
 
-  tasks:
+    - role: ableton.nix
+      when: configure_nix
+      tags: ["nix"]
 
+  tasks:
 
     - import_tasks: tasks/sudoers.yml
       when: configure_sudoers

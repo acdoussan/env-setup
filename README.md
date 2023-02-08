@@ -112,3 +112,6 @@ dockutil adds items too quickly, see if there is an open issue on github for thi
 Ansible says dockutil made some change, but it is not reflected in the dock -> restart laptop
 Emacs install needs to happen before dockutil - workaround, run playbook again
 May need to set ANSIBLE_EXECUTABLE on systems with locked down sudo access. Ex: `ANSIBLE_EXECUTABLE=/bin/logbash ansible-playbook main.yml --ask-become-pass -i inventory/linux --tags "emacs"`
+Nix may have issues with ipv6, can disable it with the following on redhat based systems
+sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
+sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1

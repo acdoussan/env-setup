@@ -21,6 +21,27 @@
   when: emacs_installed.stat.exists is false and ansible_machine != 'arm64' and ansible_os_family == "Darwin"
 
 # install emacs for linux
+- name: list installed nix packages
+  command: ~/.nix-profile/bin/nix-env -q
+  register: emacs_nix_installed_packages
+  changed_when: false
+  when: ansible_os_family != "Darwin"
+
+- name: install emacs via nix
+  block:
+    - name: create temp folder
+      tempfile:
+        state: directory
+      register: emacs_temp_dir
+
+    - name: copy nix definition
+      copy:
+        src: files/nix/emacs-override.nix
+        dest: "{{ emacs_temp_dir.path }}/emacs-override.nix"
+
+    - name: install emacs
+      command: "~/.nix-profile/bin/nix-env -i -f {{ emacs_temp_dir.path }}/emacs-override.nix"
+  when: ansible_os_family != "Darwin" and "emacs" not in emacs_nix_installed_packages.stdout
 
 - name: check if centaur readme file is present
   stat:

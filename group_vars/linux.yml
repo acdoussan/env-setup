@@ -7,3 +7,4 @@ configure_extra_packages: true
 configure_emacs: true
 configure_epel: true
 configure_dock: false
+configure_nix: true
