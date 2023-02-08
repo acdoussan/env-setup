@@ -3,3 +3,9 @@
     curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.2/install.sh | bash
   args:
     creates: "{{ ansible_env.HOME }}/.nvm/nvm.sh"
+  register: nvm_install
+
+- name: Install node 16
+  shell: >
+    /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 16"
+  when: nvm_install.changed
