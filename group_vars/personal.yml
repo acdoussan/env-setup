@@ -6,7 +6,6 @@ configure_osx: true
 configure_extra_packages: true
 configure_emacs: true
 configure_epel: false
-configure_snap: false
 configure_dock: true
 
 homebrew_installed_packages:

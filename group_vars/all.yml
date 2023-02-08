@@ -8,7 +8,6 @@ configure_osx: false
 configure_extra_packages: false
 configure_emacs: false
 configure_epel: false
-configure_snap: false
 
 # Set to 'true' to configure the Dock via dockutil.
 configure_dock: false

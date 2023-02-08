@@ -55,21 +55,10 @@
 
   tasks:
 
-    # not needed for al2 as snap has to be installed from dedicated repo for al2
-    - name: enable epel on RHEL systems
-      import_role:
-        name: geerlingguy.repo-epel
-      become: true
-      when: configure_epel and ansible_os_family == "RedHat" and ansible_distribution != "Amazon"
-      tags: ["epel"]
 
     - import_tasks: tasks/sudoers.yml
       when: configure_sudoers
       tags: ["sudoers"]
-
-    - import_tasks: tasks/snap.yml
-      when: configure_snap
-      tags: ["snap"]
 
     - import_tasks: tasks/terminal.yml
       when: configure_terminal

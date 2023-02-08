@@ -6,5 +6,4 @@ configure_osx: false
 configure_extra_packages: true
 configure_emacs: true
 configure_epel: true
-configure_snap: true
 configure_dock: false

@@ -22,15 +22,6 @@
 
 # install emacs for linux
 
-- name: install emacs via snap
-  community.general.snap:
-    name: emacs
-    classic: true
-    channel: latest/edge
-    state: present
-  when: ansible_os_family != "Darwin"
-  become: true
-
 - name: check if centaur readme file is present
   stat:
     path: ~/.emacs.d/README.md
