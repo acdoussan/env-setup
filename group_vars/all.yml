@@ -71,14 +71,14 @@ gem_packages: []
 # - name: bundler
 #   state: present # present/absent/latest, default: present
 #   version: "~> 1.15.1" # default: N/A
-npm_packages:
- - name: typescript-language-server
-   state: present # present/absent/latest, default: present
- - name: bash-language-server
-   state: present # present/absent/latest, default: present
-pip_packages:
- - name: python-lsp-server[all]
-   state: present # present/absent/latest, default: present
+npm_packages: []
+# - name: typescript-language-server
+#   state: present # present/absent/latest, default: present
+# - name: bash-language-server
+#   state: present # present/absent/latest, default: present
+pip_packages: []
+# - name: python-lsp-server[all]
+#   state: present # present/absent/latest, default: present
 
 # Glob pattern to ansible task files to run after all other tasks are finished.
 post_provision_tasks: []
