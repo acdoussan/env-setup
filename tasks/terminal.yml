@@ -7,28 +7,25 @@
 
 - name: install oh my zsh
   block:
-    - name: check for zsh install file
-      stat:
-        path: /tmp/oh-my-zsh-install.sh
-      register: oh_my_zsh_install_file
+    - name: create oh my zsh temp folder
+      tempfile:
+        state: directory
+      register: oh_my_zsh_temp_dir
 
     - name: download oh my zsh install script.
-      command: wget https://raw.githubusercontent.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O /tmp/oh-my-zsh-install.sh
-      register: ohmyzsh_download
-      when: oh_my_zsh_install_file.stat.exists is false
+      command: "wget https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh -O {{oh_my_zsh_temp_dir.path}}/oh-my-zsh-install.sh"
 
-    - name: clean oh my zsh install script.
-      command: dos2unix /tmp/oh-my-zsh-install.sh
-      when: ohmyzsh_download.changed
+    # don't think this is necessary anymore
+    #- name: clean oh my zsh install script.
+    #  command: "dos2unix {{ oh_my_zsh_temp_dir.path }}/oh-my-zsh-install.sh"
 
     - name: make oh my zsh install script executable
       file:
-        dest: /tmp/oh-my-zsh-install.sh
+        dest: "{{ oh_my_zsh_temp_dir.path }}/oh-my-zsh-install.sh"
         mode: +x
-      when: ohmyzsh_download.changed
 
     - name: run oh my zsh install script.
-      command: sh -c /tmp/oh-my-zsh-install.sh
+      command: "sh -c {{ oh_my_zsh_temp_dir.path }}/oh-my-zsh-install.sh"
   when: oh_my_zsh_folder.stat.exists is false
 
 # powerlevel10k https://github.com/romkatv/powerlevel10k
