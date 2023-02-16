@@ -79,7 +79,7 @@
       when: configure_extra_packages
       tags: ["extra-packages"]
 
-    # depends on dotfiles & snap
+    # depends on dotfiles
     - import_tasks: tasks/emacs.yml
       when: configure_emacs
       tags: ["emacs"]
