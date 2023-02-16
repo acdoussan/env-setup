@@ -67,6 +67,10 @@
       when: configure_terminal
       tags: ["terminal"]
 
+    - import_tasks: tasks/nix.yml
+      when: configure_nix
+      tags: ["nix"]
+
     - import_tasks: tasks/nvm.yml
       when: configure_nvm
       tags: ["nvm"]

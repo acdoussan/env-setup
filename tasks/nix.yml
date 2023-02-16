@@ -1,11 +1,9 @@
-- name: create nix config dir if it does not exist
-  file:
-    path: /etc/nixos
-    state: directory
-  become: true
+- name: template packages.nix
+  template:
+    src: files/nix/packages.nix
+    dest: ~/.packages.nix
+  register: packages_template
 
-- name: apply nix configuration
-  copy:
-    src: files/nix/configuration.nix
-    dest: /etc/nixos/configuration.nix
-  become: true
+- name: install packages
+  command: "~/.nix-profile/bin/nix-env -i -f ~/.packages.nix"
+  when: packages_template.changed
