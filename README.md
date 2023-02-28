@@ -115,3 +115,7 @@ May need to set ANSIBLE_EXECUTABLE on systems with locked down sudo access. Ex: 
 Nix may have issues with ipv6, can disable it with the following on redhat based systems
 sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
+
+## Fonts
+https://github.com/powerline/fonts/blob/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf
+`M-x centaur-install-fonts`
