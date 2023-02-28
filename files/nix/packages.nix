@@ -4,4 +4,15 @@
   pkgs.python310Full
   pkgs.python310Packages.pip
   pkgs.nodejs-16_x
+  pkgs.jdk
+  pkgs.ruby_3_1
+  pkgs.ansible
+  pkgs.git
+  pkgs.git-lfs
+  pkgs.wget
+  pkgs.tmux
+  pkgs.coreutils
+  pkgs.rbenv
+  pkgs.terraform
+  pkgs.kubectl
 ]
