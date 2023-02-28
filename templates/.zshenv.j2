@@ -19,10 +19,10 @@ eval `gdircolors ~/.dircolors`
 # apply solarize ls colors
 eval `dircolors ~/.dircolors`
 
-export SNAP=/snap
-export PATH=$SNAP/bin:$PATH
-
 {% endif %}
+
+export USER_LOCAL=~/.local
+export PATH=$USER_LOCAL/bin:$PATH
 
 if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
 
