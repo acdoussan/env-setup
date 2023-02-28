@@ -59,6 +59,7 @@
 
 - name: install centaur emacs.
   command: git clone --depth 1 https://github.com/seagle0128/.emacs.d.git ~/.emacs.d
+#  command: git clone --depth 1 --branch v6.0.0 https://github.com/seagle0128/.emacs.d.git ~/.emacs.d
   when: centaur_readme_file.stat.exists is false
 
 - name: Set config files.
