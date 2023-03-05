@@ -7,22 +7,12 @@ configure_extra_packages: true
 configure_emacs: true
 configure_epel: false
 configure_dock: true
+configure_nix: true
 
 homebrew_installed_packages:
-  - ansible
-  - git
-  - git-lfs
-  - node
-  - nvm
-  - wget
-  - java
-  - tmux
   - defaultbrowser
-  - dos2unix
-  - coreutils
-  - emacs-plus@27
-  - rbenv
-  - ruby-build
+  - wget
+  - { name: emacs-plus@29, install_options: "with-native-comp" }
 
 homebrew_taps:
   - homebrew/core
