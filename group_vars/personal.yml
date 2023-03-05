@@ -11,6 +11,7 @@ configure_nix: true
 
 homebrew_installed_packages:
   - defaultbrowser
+  - wget
   - { name: emacs-plus@29, install_options: "with-native-comp" }
 
 homebrew_taps:
