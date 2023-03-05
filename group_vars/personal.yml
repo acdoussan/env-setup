@@ -7,30 +7,16 @@ configure_extra_packages: true
 configure_emacs: true
 configure_epel: false
 configure_dock: true
+configure_nix: true
 
 homebrew_installed_packages:
-  - ansible
-  - git
-  - git-lfs
-  - node
-  - nvm
-  - wget
-  - java
-  - tmux
   - defaultbrowser
-  - dos2unix
-  - coreutils
   - emacs-plus@27
-  - rbenv
-  - ruby-build
-  - hashicorp/tap/terraform
-  - kubectl
 
 homebrew_taps:
   - homebrew/core
   - homebrew/cask
   - d12frosted/emacs-plus
-  - hashicorp/tap
 
 homebrew_cask_apps:
   - docker

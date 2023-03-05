@@ -1,3 +1,35 @@
+- name: check if nix is already installed
+  stat:
+    path: "/nix"
+  register: nix_folder
+
+- name: install nix if its not installed
+  block:
+    - name: create nix install temp dir
+      tempfile:
+        state: directory
+      register: nix_install_temp_dir
+
+    # might need to add --daemon for non macos
+    # https://nixos.org/download.html#nix-install-linux
+    - name: download nix install script
+      command: "wget https://nixos.org/nix/install -O {{nix_install_temp_dir.path}}/nix-install.sh"
+
+    - name: make nix install script executable
+      file:
+        dest: "{{ nix_install_temp_dir.path }}/nix-install.sh"
+        mode: +x
+
+    - name: run nix install script.
+      command: "sh -c {{ nix_install_temp_dir.path }}/nix-install.sh"
+
+    - name: add unstable nix channel
+      command: "nix-channel --add 'https://nixos.org/channels/nixpkgs-unstable' nixpkgs"
+
+    - name: update packages from channel
+      command: "nix-channel --update"
+  when: nix_folder.stat.exists is false
+
 - name: template packages.nix
   template:
     src: files/nix/packages.nix
@@ -5,5 +37,5 @@
   register: packages_template
 
 - name: install packages
-  command: "~/.nix-profile/bin/nix-env -i -f ~/.packages.nix"
+  command: "nix-env -i -f ~/.packages.nix"
   when: packages_template.changed

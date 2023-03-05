@@ -11,7 +11,7 @@
   pkgs.git-lfs
   pkgs.wget
   pkgs.tmux
-  pkgs.coreutils
+  pkgs.coreutils-prefixed
   pkgs.rbenv
   pkgs.terraform
   pkgs.kubectl
