@@ -11,7 +11,7 @@ configure_nix: true
 
 homebrew_installed_packages:
   - defaultbrowser
-  - emacs-plus@27
+  - { name: emacs-plus@29, install_options: "with-native-comp" }
 
 homebrew_taps:
   - homebrew/core

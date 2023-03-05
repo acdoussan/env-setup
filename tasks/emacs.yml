@@ -8,14 +8,14 @@
 
 - name: Ensure emacs is installed for ARM.
   copy:
-    src: "/opt/homebrew/Cellar/emacs-plus@27/27.2/Emacs.app"
+    src: "/opt/homebrew/Cellar/emacs-plus@29/29.0.60/Emacs.app"
     dest: "{{ homebrew_cask_appdir }}"
     remote_src: yes
   when: emacs_installed.stat.exists is false and ansible_machine == 'arm64' and ansible_os_family == "Darwin"
 
 - name: Ensure emacs is installed for Intel.
   copy:
-    src: "/usr/local/Cellar/emacs-plus@27/27.2/Emacs.app"
+    src: "/usr/local/Cellar/emacs-plus@29/29.0.60/Emacs.app"
     dest: "{{ homebrew_cask_appdir }}"
     remote_src: yes
   when: emacs_installed.stat.exists is false and ansible_machine != 'arm64' and ansible_os_family == "Darwin"
