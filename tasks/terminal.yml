@@ -66,6 +66,7 @@
   template:
     src: templates/.zshenv.j2
     dest: ~/.zshenv
+  register: zshenv_template
 
 - name: check for zshenv.local.
   stat:
@@ -77,6 +78,10 @@
     src: files/terminal/.zshenv.local
     dest: ~/.zshenv.local
   when: zshenv_local_file.stat.exists is false
+
+- name: exit if zshenv changed
+  fail: msg="please close this terminal, open a new one, and rerun the playbook"
+  when: zshenv_template.changed
 
 # Custom Terminal theme.
 - name: Get current Terminal profile.
