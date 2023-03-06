@@ -23,11 +23,14 @@
     - name: run nix install script.
       command: "sh -c {{ nix_install_temp_dir.path }}/nix-install.sh"
 
+    - name: reload omz
+      command: omz reload
+
     - name: add unstable nix channel
-      command: "/nix/var/nix/profiles/default/bin/nix-channel --add 'https://nixos.org/channels/nixpkgs-unstable' nixpkgs"
+      command: "nix-channel --add 'https://nixos.org/channels/nixpkgs-unstable' nixpkgs"
 
     - name: update packages from channel
-      command: "/nix/var/nix/profiles/default/bin/nix-channel --update"
+      command: "nix-channel --update"
   when: nix_folder.stat.exists is false
 
 - name: template packages.nix
@@ -37,5 +40,5 @@
   register: packages_template
 
 - name: install packages
-  command: "/nix/var/nix/profiles/default/bin/nix-env -i -f ~/.packages.nix"
+  command: "nix-env -i -f ~/.packages.nix"
   when: packages_template.changed

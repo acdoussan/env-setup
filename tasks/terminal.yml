@@ -80,7 +80,7 @@
   when: zshenv_local_file.stat.exists is false
 
 - name: exit if zshenv changed
-  fail: msg="please close this terminal, open a new one, and rerun the playbook"
+  fail: msg="please close this terminal, open a new one, and rerun the playbook. Alternatively you can try omz reload"
   when: zshenv_template.changed
 
 # Custom Terminal theme.

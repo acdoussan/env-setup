@@ -40,7 +40,7 @@
         dest: "{{ emacs_temp_dir.path }}/emacs-override.nix"
 
     - name: install emacs
-      command: "~/.nix-profile/bin/nix-env -i -f {{ emacs_temp_dir.path }}/emacs-override.nix"
+      command: "nix-env -i -f {{ emacs_temp_dir.path }}/emacs-override.nix"
   when: ansible_os_family != "Darwin" and "emacs" not in emacs_nix_installed_packages.stdout
 
 - name: check if centaur readme file is present
