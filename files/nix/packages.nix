@@ -15,4 +15,5 @@
   pkgs.rbenv
   pkgs.terraform
   pkgs.kubectl
+  pkgs.fluxcd
 ]
