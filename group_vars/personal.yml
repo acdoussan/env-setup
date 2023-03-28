@@ -1,107 +1,62 @@
----
-configure_dotfiles: true
-configure_terminal: true
-configure_nvm: true
-configure_osx: true
-configure_extra_packages: true
-configure_emacs: true
-configure_epel: false
-configure_dock: true
-configure_nix: true
-
-homebrew_installed_packages:
-  - defaultbrowser
-  - wget
-  - { name: emacs-plus@29, install_options: "with-native-comp" }
-
-homebrew_taps:
-  - homebrew/core
-  - homebrew/cask
-  - d12frosted/emacs-plus
-
-homebrew_cask_apps:
-  - docker
-  - google-chrome
-  - spotify
-  - vlc
-  - postman
-  - stats
-  - slack
-  - hpedrorodrigues/tools/dockutil # temp until dockutil 3.0 is default on homebrew, ref: https://github.com/kcrawford/dockutil/issues/127
-  - bitwarden
-  # additional
-  - discord
-  - plex
-
-mas_installed_apps:
-  - { id: 1451685025, name: "WireGuard" }
-  - { id: 1545810067,  name: "Prodrafts" }
-mas_email: "acdoussan@gmail.com"
-
-dockitems_persist:
-  - name: "App Store"
-    path: "/Applications/App Store.app/"
-    pos: 1
-  - name: "System Preferences"
-    path: "/Applications/System Preferences.app/"
-    pos: 2
-  - name: "Activity Monitor"
-    path: "/System/Applications/Utilities/Activity Monitor.app/"
-    pos: 3
-  - name: "WireGuard"
-    path: "/Applications/WireGuard.app/"
-    pos: 4
-  - name: "Google Chrome"
-    path: "/Applications/Google Chrome.app/"
-    pos: 5
-  - name: "Safari"
-    path: "/Applications/Safari.app/"
-    pos: 6
-  - name: "Bitwarden"
-    path: "/Applications/Bitwarden.app/"
-    pos: 7
-  - name: "Messages"
-    path: "/Applications/Messages.app/"
-    pos: 8
-  - name: "FaceTime"
-    path: "/Applications/FaceTime.app/"
-    pos: 9
-  - name: "Slack"
-    path: "/Applications/Slack.app/"
-    pos: 10
-  - name: "Discord"
-    path: "/Applications/Discord.app/"
-    pos: 11
-  - name: "Photos"
-    path: "/Applications/Photos.app/"
-    pos: 12
-  - name: "Calendar"
-    path: "/Applications/Calendar.app/"
-    pos: 13
-  - name: "Contacts"
-    path: "/Applications/Contacts.app/"
-    pos: 14
-  - name: "Notes"
-    path: "/Applications/Notes.app/"
-    pos: 15
-  - name: "TV"
-    path: "/Applications/TV.app/"
-    pos: 16
-  - name: "Plex"
-    path: "/Applications/Plex.app/"
-    pos: 17
-  - name: "Spotify"
-    path: "/Applications/Spotify.app/"
-    pos: 18
-  - name: "Terminal"
-    path: "/Applications/Terminal.app/"
-    pos: 19
-  - name: "Emacs"
-    path: "/Applications/Emacs.app/"
-    pos: 20
-  - name: "Postman"
-    path: "/Applications/Postman.app/"
-    pos: 21
-  - name: "Prodrafts"
-    path: "/Applications/Prodrafts.app/"
-    pos: 22
+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
+99wEicqRZOlLZeX+Zu0WLA==

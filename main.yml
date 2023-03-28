@@ -59,6 +59,10 @@
       when: configure_sudoers
       tags: ["sudoers"]
 
+    - import_tasks: tasks/git.yml
+      when: configure_git
+      tags: ["git"]
+
     - import_tasks: tasks/terminal.yml
       when: configure_terminal
       tags: ["terminal"]

@@ -2,6 +2,10 @@
 
 This playbook installs and configures most of the software I use for web and software development. Some things in macOS are slightly difficult to automate, so I still have a few manual installation steps, but at least it's all documented here.
 
+## transcrypt
+
+To unencrypt, run `./scripts/transcrypt -c aes-256-cbc -p '<password_here>'`
+
 ## Installation
 
   1. Ensure Apple's command line tools are installed (`xcode-select --install` to launch the installer).
@@ -120,3 +124,7 @@ sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 ## Fonts
 https://github.com/powerline/fonts/blob/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf
 `M-x centaur-install-fonts`
+
+## File watchers
+/etc/sysctl.conf
+fs.inotify.max_user_watches=524288

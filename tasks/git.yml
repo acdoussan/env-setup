@@ -1,0 +1,7 @@
+---
+- name: apply git config values
+  git_config:
+    name: "{{ item.name }}"
+    value: "{{ item.value }}"
+    scope: global # set in ~/.gitconfig
+  loop: "{{ git_config_values }}"

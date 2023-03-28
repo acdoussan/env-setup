@@ -1,84 +1,45 @@
----
-downloads: ~/.ansible-downloads/
-
-configure_dotfiles: false
-configure_terminal: false
-configure_nmv: false
-configure_osx: false
-configure_extra_packages: false
-configure_emacs: false
-configure_epel: false
-configure_nix: false
-
-# Set to 'true' to configure the Dock via dockutil.
-configure_dock: false
-dockitems_remove:
-  - Launchpad
-  - Mail
-  - Maps
-  - Reminders
-  - Music
-  - Podcasts
-  - News
-  - Keynote
-  - Numbers
-  - Pages
-
-dockitems_persist: []
-
-configure_sudoers: false
-sudoers_custom_config: ''
-# Example:
-# sudoers_custom_config: |
-#   # Allow users in admin group to use sudo with no password.
-#   %admin ALL=(ALL) NOPASSWD: ALL
-
-dotfiles_repo: git@github.com:acdoussan/configs.git
-dotfiles_repo_accept_hostkey: true
-dotfiles_repo_local_destination: ~/git/configs
-dotfiles_files:
-  - .zshrc
-  - .gitignore
-  - .tmux.conf
-  - .osx
-  - .defaultbrowser.scpt
-
-homebrew_installed_packages: []
-
-homebrew_taps: []
-homebrew_cask_appdir: /Applications
-homebrew_cask_apps: []
-
-# See `geerlingguy.mas` role documentation for usage instructions.
-mas_installed_apps: []
-mas_email: ""
-mas_password: ""
-mas_signin_dialog: true
-
-osx_script: "~/.osx"
-osx_script_options: "--no-restart"
-defaultbrowser_script: "~/.defaultbrowser.scpt"
-defaultbrowser_browser: "chrome"
-
-# Install packages from other package managers.
-# Note: You are responsible for making sure the required package managers are
-# installed, eg. through homebrew.
-composer_packages: []
-# - name: drush
-#   state: present # present/absent, default: present
-#   version: "^8.1" # default: N/A
-gem_packages: []
-# - name: bundler
-#   state: present # present/absent/latest, default: present
-#   version: "~> 1.15.1" # default: N/A
-npm_packages: []
-# - name: typescript-language-server
-#   state: present # present/absent/latest, default: present
-# - name: bash-language-server
-#   state: present # present/absent/latest, default: present
-pip_packages: []
-# - name: python-lsp-server[all]
-#   state: present # present/absent/latest, default: present
-
-# Glob pattern to ansible task files to run after all other tasks are finished.
-post_provision_tasks: []
+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
