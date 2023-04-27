@@ -10,3 +10,10 @@
   shell: >
     /bin/bash -c "source ~/.nvm/nvm.sh && nvm install 16"
   when: nvm_install.changed
+
+- name: Configure global packages to be installed in the home directory
+  ansible.builtin.lineinfile:
+    path: ~/.npmrc
+    regexp: '^prefix ='
+    line: "prefix = ${HOME}/.npm-packages"
+    create: true
