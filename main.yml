@@ -33,6 +33,14 @@
         msg: attempting to run playbook on m1 mac but with an emulated enviornment, please use a native terminal
       when: ansible_os_family == "Darwin" and ansible_machine != 'arm64' and proc_translated.stdout == "1"
 
+    - import_tasks: tasks/nvim.yml
+      when: configure_nvim
+      tags: ["nvim"]
+
+    - import_tasks: tasks/tmux.yml
+      when: configure_tmux
+      tags: ["tmux"]
+
   roles:
     - role: elliotweiser.osx-command-line-tools
       when: ansible_os_family == "Darwin"

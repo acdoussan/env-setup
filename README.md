@@ -122,6 +122,7 @@ sudo sysctl -w net.ipv6.conf.all.disable_ipv6=1
 sudo sysctl -w net.ipv6.conf.default.disable_ipv6=1
 
 ## Fonts
+https://www.nerdfonts.com/font-downloads#:~:text=Reserved%20Font%20Name%3A-,Source%20Code%20Pro,-%E2%80%A2%20Info%3A%20Monospaced
 https://github.com/powerline/fonts/blob/master/SourceCodePro/Source%20Code%20Pro%20for%20Powerline.otf
 `M-x centaur-install-fonts`
 

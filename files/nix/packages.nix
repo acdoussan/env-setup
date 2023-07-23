@@ -16,4 +16,6 @@
   pkgs.terraform
   pkgs.kubectl
   pkgs.fluxcd
+  pkgs.neovim
+  pkgs.ripgrep
 ]
