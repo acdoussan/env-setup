@@ -88,6 +88,7 @@ Open emacs & allow it to install, might take two opens, save created file
 
 Open Stats & disable battery, enable start a login, order in header (right to left) CPU %, GPU %, RAM %, SSD, SSD R/W #s w/ pictogram characters, NET, Network #s w/ pictogram characters
 
+System Preferences -> keyboard -> Modifier keys... -> remap caps lock to escape
 
 #### Personal post install on mac
 set up new wireguard client in router & setup wireguard app
