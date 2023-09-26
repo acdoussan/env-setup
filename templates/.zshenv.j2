@@ -14,9 +14,9 @@ export PATH=$HOMEBREW/bin:$PATH
 export USER_LOCAL=~/.local
 export PATH=$USER_LOCAL/bin:$PATH
 
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
-
 {% if ansible_os_family == "Darwin" %}
+
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh ]; then . /nix/var/nix/profiles/default/etc/profile.d/nix.sh; fi
 
 command -v gls >/dev/null 2>&1 && alias ls='gls --color=auto'
 
@@ -24,6 +24,8 @@ command -v gls >/dev/null 2>&1 && alias ls='gls --color=auto'
 command -v gdircolors >/dev/null 2>&1 && eval `gdircolors ~/.dircolors`
 
 {% else %}
+
+if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
 
 # apply solarize ls colors
 eval `dircolors ~/.dircolors`
