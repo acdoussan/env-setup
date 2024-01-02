@@ -18,4 +18,6 @@
   pkgs.fluxcd
   pkgs.neovim
   pkgs.ripgrep
+  pkgs.butane
+  pkgs.mkpasswd
 ]
