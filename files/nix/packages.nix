@@ -18,6 +18,7 @@
   pkgs.fluxcd
   pkgs.neovim
   pkgs.ripgrep
+  pkgs.fd
   pkgs.butane
   pkgs.mkpasswd
 ]
