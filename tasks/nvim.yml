@@ -1,14 +1,2 @@
 ---
-#- name: install packer
-#  git:
-#    repo: 'https://github.com/wbthomason/packer.nvim'
-#    dest: '~/.local/share/nvim/site/pack/packer/start/packer.nvim'
-#    depth: 1
-#    update: no
-
-- name: install NvChad
-  git:
-    repo: 'https://github.com/NvChad/NvChad'
-    dest: '~/.config/nvim'
-    depth: 1
-    update: no
+# no custom steps needed for now
