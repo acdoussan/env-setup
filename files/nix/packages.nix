@@ -13,7 +13,6 @@
   pkgs.tmux
   pkgs.coreutils-prefixed
   pkgs.rbenv
-  pkgs.terraform
   pkgs.kubectl
   pkgs.fluxcd
   pkgs.neovim
