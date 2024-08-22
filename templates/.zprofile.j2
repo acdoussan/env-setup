@@ -1,0 +1,23 @@
+# Managed by ansbile, changes will be overwritten, see .zprofile.local
+# put path variable updates here
+
+if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh ]; then . /nix/var/nix/profiles/default/etc/profile.d/nix.sh; fi
+
+{% if ansible_os_family == "Darwin" %}
+
+  {% if ansible_machine == 'arm64' %}
+
+export HOMEBREW=/opt/homebrew
+export PATH=$HOMEBREW/bin:$PATH
+
+  {% endif %}
+
+{% endif %}
+
+export USER_LOCAL=~/.local
+export PATH=$USER_LOCAL/bin:$PATH
+
+export TOOLBOX=$HOME/.toolbox
+export PATH=$TOOLBOX/bin:$PATH
+
+source ~/.zprofile.local

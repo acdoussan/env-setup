@@ -1,22 +1,7 @@
-# Managed by ansbile, see .zshenv.local
+# Managed by ansbile, changes will be overwritten, see .zshenv.local
+# put anything other than path variable updates here
 
 {% if ansible_os_family == "Darwin" %}
-
-  {% if ansible_machine == 'arm64' %}
-
-export HOMEBREW=/opt/homebrew
-export PATH=$HOMEBREW/bin:$PATH
-
-  {% endif %}
-
-{% endif %}
-
-export USER_LOCAL=~/.local
-export PATH=$USER_LOCAL/bin:$PATH
-
-{% if ansible_os_family == "Darwin" %}
-
-if [ -e /nix/var/nix/profiles/default/etc/profile.d/nix.sh ]; then . /nix/var/nix/profiles/default/etc/profile.d/nix.sh; fi
 
 command -v gls >/dev/null 2>&1 && alias ls='gls --color=auto'
 
@@ -25,11 +10,12 @@ command -v gdircolors >/dev/null 2>&1 && eval `gdircolors ~/.dircolors`
 
 {% else %}
 
-if [ -e $HOME/.nix-profile/etc/profile.d/nix.sh ]; then . $HOME/.nix-profile/etc/profile.d/nix.sh; fi
-
 # apply solarize ls colors
 eval `dircolors ~/.dircolors`
 
 {% endif %}
+
+alias bb='brazil-build'
+alias bbb='brazil-recursive-cmd "brazil-build"'
 
 source ~/.zshenv.local
